@@ -49,6 +49,9 @@
         ],
         "pint": [
             "./vendor/bin/pint"
+        ],
+        "analyze": [
+            "./vendor/bin/phpstan analyse"
         ]
     },
     "extra": {
