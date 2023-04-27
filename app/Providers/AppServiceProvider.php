@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::shouldBeStrict($this->app->environment(['local', 'testing']));
+        Model::shouldBeStrict((bool)$this->app->environment(['local', 'testing']));
     }
 
     public function registerLocally(): void
