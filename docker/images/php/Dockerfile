@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
+    libjpeg-dev \
     libonig-dev \
     libxml2-dev \
     zip \
@@ -25,6 +26,10 @@ RUN pecl install xdebug-3.1.3 \
     && pecl install redis-5.3.7 \
 	&& docker-php-ext-enable xdebug redis
 
+RUN docker-php-ext-configure gd --enable-gd --with-jpeg
+
+RUN docker-php-ext-install gd
+
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -34,4 +39,4 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 # Set working directory
 WORKDIR /var/www/html
 
- 
+
